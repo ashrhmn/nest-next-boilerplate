@@ -4,8 +4,9 @@ require("dotenv").config();
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: false,
-  output: "export",
-  ...(process.env.NODE_ENV === "production" ? { distDir: "dist/client" } : {}),
+  // distDir: "dist/.next",
+  // output: "export",
+  ...(process.env.NODE_ENV === "production" ? { distDir: "dist/.next" } : {}),
 };
 
 module.exports = nextConfig;

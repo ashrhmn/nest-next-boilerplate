@@ -1,7 +1,7 @@
-import { Module } from "@nestjs/common";
-import { AbcService } from "./abc.service";
+import { AbcController } from "@/server/modules/abc/abc.controller";
+import { AbcService } from "@/server/modules/abc/abc.service";
 import { CoingeckoModule } from "@ashrhmn/nest-modules";
-import { AbcController } from "./abc.controller";
+import { Module } from "@nestjs/common";
 
 @Module({
   providers: [AbcService],

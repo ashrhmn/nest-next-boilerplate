@@ -1,0 +1,12 @@
+node_modules
+.next
+dist
+Dockerfile
+Dockerfile.*
+docker-compose.*
+.dockerignore
+.git
+.gitignore
+next-env.d.ts
+*.md
+.vscode

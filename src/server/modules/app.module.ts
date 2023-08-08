@@ -1,17 +1,17 @@
-import { Module } from "@nestjs/common";
-import { ServeStaticModule } from "@nestjs/serve-static";
-import { join } from "path";
+import { AbcModule } from "@/server/modules/abc/abc.module";
+import { AuthModule } from "@/server/modules/auth/auth.module";
+import { NextModule } from "@/server/modules/next/next.module";
 import {
+  AlpacaModule,
+  CacheModule,
   ERC20Module,
+  EtherscanModule,
+  IERC20ModuleConfig,
+  IEtherscanModuleConfig,
   ISwapModuleConfig,
   SwapModule,
-  AlpacaModule,
-  EtherscanModule,
-  IEtherscanModuleConfig,
-  IERC20ModuleConfig,
-  CacheModule,
 } from "@ashrhmn/nest-modules";
-import { AbcModule } from "./abc/abc.module";
+import { Module } from "@nestjs/common";
 
 export const networkConfig: IERC20ModuleConfig["networkConfig"] &
   ISwapModuleConfig["networkConfig"] &
@@ -55,13 +55,13 @@ export const networkConfig: IERC20ModuleConfig["networkConfig"] &
       // REDIS_URL: "redis://localhost:6370",
     }),
     SwapModule.register({
-      exposeController: false,
+      exposeController: true,
       networkConfig,
       poolPositionFetchCacheTimeout: 10,
       // REDIS_URL: "redis://localhost:6370",
     }),
     AlpacaModule.register({
-      exposeController: true,
+      exposeController: false,
       apiKeys: {
         ALPACA_KEY: "AKL580RLFB99T48D6FOH",
         ALPACA_SECRET: "jBGf3I4OIwct0HNbQWIJIrIRaEcjT7KfqMteoymX",
@@ -70,19 +70,21 @@ export const networkConfig: IERC20ModuleConfig["networkConfig"] &
       },
     }),
     EtherscanModule.register({
-      exposeController: true,
+      exposeController: false,
       networkConfig,
       // REDIS_URL: "redis://localhost:6370",
     }),
 
     CacheModule.register({
-      REDIS_URL: "redis://localhost:6379",
+      REDIS_URL: process.env.REDIS_URL,
       global: true,
     }),
     AbcModule,
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, "client"),
-    }),
+    // ServeStaticModule.forRoot({
+    //   rootPath: join(__dirname, "client"),
+    // }),
+    NextModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

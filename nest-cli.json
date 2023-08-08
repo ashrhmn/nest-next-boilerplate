@@ -4,8 +4,7 @@
   "sourceRoot": "src",
   "compilerOptions": {
     "builder": "swc",
-    "typeCheck": true,
-    "assets": ["./client/public/"],
-    "watchAssets": true
-  }
+    "typeCheck": true
+  },
+  "entryFile": "server/main"
 }

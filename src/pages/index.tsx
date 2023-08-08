@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [clock, setClock] = useState<any>(undefined);
@@ -11,7 +11,9 @@ export default function Home() {
   }, []);
   return (
     <>
-      <h1 className="text-4xl text-center font-bold">Hello World</h1>
+      <h1 id="sdckjd" className="text-4xl text-center font-bold">
+        Hello World
+      </h1>
       <pre>{JSON.stringify(clock, null, 2)}</pre>
     </>
   );

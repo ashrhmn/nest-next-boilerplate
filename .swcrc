@@ -1,0 +1,5 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc",
+  "exclude": ["src/client/**/*", "src/pages/**/*"],
+  "minify": true
+}

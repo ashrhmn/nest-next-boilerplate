@@ -5,10 +5,11 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: "module",
   },
-  plugins: ["@typescript-eslint/eslint-plugin"],
+  plugins: ["@typescript-eslint/eslint-plugin", "no-relative-import-paths"],
   extends: [
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
+    "plugin:@next/next/recommended",
   ],
   root: true,
   env: {
@@ -37,5 +38,9 @@ module.exports = {
       },
     ],
     eqeqeq: "warn",
+    "no-relative-import-paths/no-relative-import-paths": [
+      "warn",
+      { rootDir: "src", prefix: "@" },
+    ],
   },
 };
