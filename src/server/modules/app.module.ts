@@ -1,6 +1,7 @@
 import { AbcModule } from "@/server/modules/abc/abc.module";
 import { AuthModule } from "@/server/modules/auth/auth.module";
 import { NextModule } from "@/server/modules/next/next.module";
+import { PostgresDatabaseProviderModule } from "@/server/providers/database/postgres/provider.module";
 import {
   AlpacaModule,
   CacheModule,
@@ -12,7 +13,6 @@ import {
   SwapModule,
 } from "@ashrhmn/nest-modules";
 import { Module } from "@nestjs/common";
-import { PostgresDatabaseProviderModule } from "../providers/database/postgres/provider.module";
 
 export const networkConfig: IERC20ModuleConfig["networkConfig"] &
   ISwapModuleConfig["networkConfig"] &
