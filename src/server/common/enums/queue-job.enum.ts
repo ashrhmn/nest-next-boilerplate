@@ -1,0 +1,3 @@
+export enum QueueJobKeys {
+  ENSURE_ORDER_FILLED_JOB = "ENSURE_ORDER_FILLED_JOB",
+}

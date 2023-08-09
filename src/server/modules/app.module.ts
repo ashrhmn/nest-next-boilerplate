@@ -12,6 +12,7 @@ import {
   SwapModule,
 } from "@ashrhmn/nest-modules";
 import { Module } from "@nestjs/common";
+import { PostgresDatabaseProviderModule } from "../providers/database/postgres/provider.module";
 
 export const networkConfig: IERC20ModuleConfig["networkConfig"] &
   ISwapModuleConfig["networkConfig"] &
@@ -85,6 +86,7 @@ export const networkConfig: IERC20ModuleConfig["networkConfig"] &
     // }),
     NextModule,
     AuthModule,
+    PostgresDatabaseProviderModule,
   ],
 })
 export class AppModule {}

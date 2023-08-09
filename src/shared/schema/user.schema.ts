@@ -1,10 +1,12 @@
-import { paginationMetaSchema } from "@/shared/schema/common.schema";
+import {
+  paginationMetaSchema,
+  paginationQuerySchema,
+} from "@/shared/schema/common.schema";
 import z from "zod";
 
 export const userSchema = z.object({
-  // id: z.string().uuid(),
-  id: z.string(),
-  // name: z.string(),
+  id: z.string().uuid(),
+  name: z.string().nullable().optional(),
   email: z.string().email(),
   password: z.string(),
   // address: z.string(),
@@ -19,9 +21,19 @@ const getAllUsersResponseSchema = z.object({
 
 export const getAllUsers = {
   response: getAllUsersResponseSchema,
+  query: paginationQuerySchema,
 };
 
 export const getUserById = {
   response: userSchema,
   param: z.object({ id: z.string() }),
+};
+
+export const createUser = {
+  response: userSchema,
+  body: z.object({
+    name: z.string().optional(),
+    email: z.string().email(),
+    password: z.string().min(6, "Must have at least 6 chars"),
+  }),
 };

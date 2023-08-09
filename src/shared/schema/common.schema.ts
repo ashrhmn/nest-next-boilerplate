@@ -9,3 +9,8 @@ export const paginationMetaSchema = z.object({
   from: z.number(),
   to: z.number(),
 });
+
+export const paginationQuerySchema = z.object({
+  skip: z.coerce.number().optional(),
+  take: z.coerce.number().optional(),
+});

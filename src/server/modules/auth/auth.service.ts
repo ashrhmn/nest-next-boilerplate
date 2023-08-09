@@ -1,4 +1,5 @@
-import { User, UserService } from "@/server/modules/user/user.service";
+import { User } from "@/server/modules/user/entities/user.entity";
+import { UserService } from "@/server/modules/user/user.service";
 import { HttpException, Injectable } from "@nestjs/common";
 import { Response } from "express";
 import { sign } from "jsonwebtoken";
@@ -21,7 +22,8 @@ export class AuthService {
   }
 
   async login({ email, password }, res: Response) {
-    const user = await this.userService.getUserByEmail(email);
+    // const user = await this.userService.getUserByEmail(email);
+    const user = {} as any;
     if (!user) throw new HttpException("Invalid email or password", 400);
 
     if (user.password !== password)

@@ -8,7 +8,14 @@ const usePageNumber = (itemsPerPage = 5) => {
     [router.query.page],
   );
   const offset = useMemo(() => (page - 1) * itemsPerPage, [page, itemsPerPage]);
-  return { page, limit: itemsPerPage, offset };
+
+  return {
+    page,
+    limit: itemsPerPage,
+    offset,
+    skip: offset,
+    take: itemsPerPage,
+  };
 };
 
 export default usePageNumber;

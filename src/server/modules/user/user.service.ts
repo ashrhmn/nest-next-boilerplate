@@ -1,52 +1,64 @@
-import { createAsyncService } from "@/server/factories";
 import { apiConfig } from "@/shared/api-config";
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { createAsyncService } from "@ashrhmn/z-rest";
 
-export type User = {
-  id: string;
-  email: string;
-  password: string;
-};
+import { User } from "@/server/modules/user/entities/user.entity";
+import { createPaginationMetaFromFindManyOption } from "@ashrhmn/nest-modules";
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
 
 @Injectable()
 export class UserService {
-  private readonly users: User[] = [
-    {
-      id: "weqinpoiwjpeiov",
-      email: "ashik@deepchainlabs.com",
-      password: "password",
-    },
-    {
-      id: "wekfnpwiepewipe",
-      email: "admin@deepchainlabs.com",
-      password: "password",
-    },
-  ];
+  constructor(
+    @InjectRepository(User) private readonly userRepository: Repository<User>,
+  ) {}
 
-  async getUserByEmail(email: string) {
-    return this.users.find((user) => user.email === email) || null;
-  }
-
-  getAll = createAsyncService<typeof apiConfig.user.getAll>(async () => {
-    return {
-      data: this.users,
-      meta: {
-        currentPage: 1,
-        from: 1,
-        lastPage: 1,
-        nextPage: null,
-        prevPage: null,
-        to: 1,
-        total: 2,
-      },
-    };
-  });
+  getAll = createAsyncService<typeof apiConfig.user.getAll>(
+    async ({ query: { skip, take } }) => {
+      const [data, total] = await this.userRepository.findAndCount({
+        skip,
+        take,
+      });
+      const meta = createPaginationMetaFromFindManyOption(
+        { skip, take },
+        total,
+      );
+      return { data, meta };
+    },
+  );
 
   getById = createAsyncService<typeof apiConfig.user.getById>(
     async ({ param: { id } }) => {
-      const user = this.users.find((user) => user.id === id);
+      const user = await this.userRepository.findOne({ where: { id } });
       if (!user) throw new NotFoundException("User not found");
       return user;
+    },
+  );
+
+  create = createAsyncService<typeof apiConfig.user.create>(
+    async ({ body }) => {
+      const user = await this.userRepository.save(
+        this.userRepository.create(body),
+      );
+      return user;
+    },
+  );
+
+  delete = createAsyncService<typeof apiConfig.user.delete>(
+    async ({ param: { id } }) => {
+      const user = await this.userRepository.findOne({ where: { id } });
+      if (!user) throw new NotFoundException("User not found");
+      await this.userRepository.delete({ id });
+      return user;
+    },
+  );
+
+  update = createAsyncService<typeof apiConfig.user.update>(
+    async ({ param: { id }, body }) => {
+      const user = await this.userRepository.findOne({ where: { id } });
+      if (!user) throw new NotFoundException("User not found");
+      await this.userRepository.update({ id }, body);
+      return "success";
     },
   );
 }

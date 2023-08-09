@@ -1,5 +1,6 @@
-import { IApiConfigSatisfier, defaultApiConfig } from "@/shared/interfaces";
 import { schema } from "@/shared/schema";
+import { IApiConfigSatisfier, defaultApiConfig } from "@ashrhmn/z-rest-client";
+import z from "zod";
 
 export const userApiConfig = {
   getAll: {
@@ -7,6 +8,7 @@ export const userApiConfig = {
     method: "GET",
     path: "/users",
     responseSchema: schema.user.getAllUsers.response,
+    querySchema: schema.user.getAllUsers.query,
   },
   getById: {
     ...defaultApiConfig,
@@ -14,5 +16,27 @@ export const userApiConfig = {
     path: "/users/:id",
     responseSchema: schema.user.getUserById.response,
     paramSchema: schema.user.getUserById.param,
+  },
+  create: {
+    ...defaultApiConfig,
+    method: "POST",
+    path: "/users",
+    responseSchema: schema.user.createUser.response,
+    bodySchema: schema.user.createUser.body,
+  },
+  delete: {
+    ...defaultApiConfig,
+    method: "DELETE",
+    path: "/users/:id",
+    paramSchema: schema.user.getUserById.param,
+    responseSchema: schema.user.getUserById.response,
+  },
+  update: {
+    ...defaultApiConfig,
+    method: "PUT",
+    path: "/users/:id",
+    paramSchema: schema.user.getUserById.param,
+    responseSchema: z.string(),
+    bodySchema: schema.user.createUser.body.partial(),
   },
 } as const satisfies IApiConfigSatisfier;

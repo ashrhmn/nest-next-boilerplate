@@ -1,6 +1,6 @@
 import { MyComp } from "@/client/components/MyComp";
-import { defaultServiceArgs } from "@/client/service";
 import { userService } from "@/client/service/user.service";
+import { defaultServiceArgs } from "@ashrhmn/z-rest-client";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 

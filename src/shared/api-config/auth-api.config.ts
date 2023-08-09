@@ -1,5 +1,5 @@
-import { IApiConfigSatisfier, defaultApiConfig } from "@/shared/interfaces";
 import { schema } from "@/shared/schema";
+import { IApiConfigSatisfier, defaultApiConfig } from "@ashrhmn/z-rest-client";
 
 export const authApiConfig = {
   login: {
