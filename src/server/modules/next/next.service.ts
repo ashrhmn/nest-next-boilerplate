@@ -11,7 +11,6 @@ export class NextService {
       dev: process.env.NODE_ENV === "development",
       customServer: true,
     });
-    this.nextServer.prepare();
   }
 
   getServer() {

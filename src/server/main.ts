@@ -9,7 +9,9 @@ dotenv.config();
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {});
-  const nextHandler = app.get(NextService).getHandler();
+  const nextService = app.get(NextService);
+  await nextService.getServer().prepare();
+  const nextHandler = nextService.getHandler();
   app.use(async (req: Request, res: Response, next: NextFunction) => {
     if (req.url.startsWith("/api")) return next();
     else nextHandler(req, res, parse(req.url, true));
