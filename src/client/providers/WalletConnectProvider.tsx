@@ -12,10 +12,10 @@ const { WagmiConfig, configureChains, createConfig } = wagmi;
 
 const projectId = "a5f50d04a3c77b08ca37ca38d4a81ff2";
 
-const { goerli, mainnet, polygon } = wagmiChains;
+const { goerli, polygon } = wagmiChains;
 const { Web3Modal } = web3ModalReact;
 
-const chains = [mainnet, polygon, goerli];
+const chains = [polygon, goerli];
 
 const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
 const wagmiConfig = createConfig({

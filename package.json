@@ -24,7 +24,7 @@
     "seeder:refresh:dev": "env-cmd --silent ts-node -r tsconfig-paths/register src/server/seeder --refresh"
   },
   "dependencies": {
-    "@ashrhmn/nest-modules": "^0.0.17",
+    "@ashrhmn/nest-modules": "^0.0.18",
     "@ashrhmn/react-module": "^1.0.15",
     "@ashrhmn/z-rest": "^0.0.4",
     "@ashrhmn/z-rest-client": "^0.0.5",
@@ -78,7 +78,7 @@
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
     "autoprefixer": "^10.4.14",
-    "eslint": "^8.46.0",
+    "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-no-relative-import-paths": "^1.5.2",
     "eslint-plugin-prettier": "^5.0.0",
