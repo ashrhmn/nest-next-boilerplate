@@ -39,4 +39,5 @@ export const userApiConfig = {
     responseSchema: z.string(),
     bodySchema: schema.user.createUser.body.partial(),
   },
-} as const satisfies IApiConfigSatisfier;
+} as IApiConfigSatisfier;
+// } as const satisfies IApiConfigSatisfier;

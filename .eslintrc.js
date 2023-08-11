@@ -23,12 +23,12 @@ module.exports = {
     "dist",
   ],
   rules: {
-    "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "prettier/prettier": "off",
-    "@typescript-eslint/no-empty-function": "warn",
+    "@typescript-eslint/no-empty-function": "off",
+    "@next/next/no-img-element": "off",
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {

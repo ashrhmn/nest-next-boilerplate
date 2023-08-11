@@ -11,7 +11,7 @@ type IForm = z.infer<typeof formSchema>;
 // });
 
 export default function ConvertPrice() {
-  const handlePost = async (data: IForm) => {
+  const handlePost = async (_data: IForm) => {
     // const res = await client.convertPrice.mutation({ body: data });
     // console.log(res);
     // if (res.status === 200) {

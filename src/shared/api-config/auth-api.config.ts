@@ -1,5 +1,5 @@
 import { schema } from "@/shared/schema";
-import { IApiConfigSatisfier, defaultApiConfig } from "@ashrhmn/z-rest-client";
+import { defaultApiConfig } from "@ashrhmn/z-rest-client";
 
 export const authApiConfig = {
   login: {
@@ -23,4 +23,5 @@ export const authApiConfig = {
     bodySchema: schema.auth.refreshToken.body,
     responseSchema: schema.auth.refreshToken.response,
   },
-} as const satisfies IApiConfigSatisfier;
+};
+// } as const satisfies IApiConfigSatisfier;

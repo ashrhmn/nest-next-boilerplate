@@ -12,11 +12,16 @@ async function bootstrap() {
   const nextService = app.get(NextService);
   await nextService.getServer().prepare();
   const nextHandler = nextService.getHandler();
+
+  const baseApiUrl = (
+    (process.env.NEXT_PUBLIC_BASE_URL || "") + "/api"
+  ).replace("//api", "/api");
+
   app.use(async (req: Request, res: Response, next: NextFunction) => {
-    if (req.url.startsWith("/api")) return next();
+    if (req.url.startsWith(baseApiUrl)) return next();
     else nextHandler(req, res, parse(req.url, true));
   });
-  app.setGlobalPrefix("api");
+  app.setGlobalPrefix(baseApiUrl);
   await app.listen(3000);
 }
 bootstrap();

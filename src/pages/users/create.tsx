@@ -46,7 +46,9 @@ export default function CreateUser() {
             placeholder="email"
           />
           {errors.email && (
-            <span className="text-red-600">{errors.email.message}</span>
+            <span className="text-red-600">
+              {errors.email.message?.toString()}
+            </span>
           )}
         </div>
         <div className="flex gap-4">
@@ -58,7 +60,9 @@ export default function CreateUser() {
             placeholder="name"
           />
           {errors.name && (
-            <span className="text-red-600">{errors.name.message}</span>
+            <span className="text-red-600">
+              {errors.name.message?.toString()}
+            </span>
           )}
         </div>
         <div className="flex gap-4">
@@ -70,7 +74,9 @@ export default function CreateUser() {
             placeholder="password"
           />
           {errors.password && (
-            <span className="text-red-600">{errors.password.message}</span>
+            <span className="text-red-600">
+              {errors.password.message?.toString()}
+            </span>
           )}
         </div>
         <button type="submit">Submit</button>

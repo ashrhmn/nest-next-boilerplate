@@ -1,3 +1,4 @@
+import WalletConnectProvider from "@/client/providers/WalletConnectProvider";
 import "@/client/styles/global.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AppProps } from "next/app";
@@ -8,8 +9,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <main>
       <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
-        <Toaster position="top-right" />
+        <WalletConnectProvider>
+          <Component {...pageProps} />
+          <Toaster position="top-right" />
+        </WalletConnectProvider>
       </QueryClientProvider>
     </main>
   );

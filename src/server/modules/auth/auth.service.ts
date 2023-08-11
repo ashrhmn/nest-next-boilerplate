@@ -21,7 +21,7 @@ export class AuthService {
     return { accessToken, refreshToken };
   }
 
-  async login({ email, password }, res: Response) {
+  async login({ email: _, password }, res: Response) {
     // const user = await this.userService.getUserByEmail(email);
     const user = {} as any;
     if (!user) throw new HttpException("Invalid email or password", 400);
