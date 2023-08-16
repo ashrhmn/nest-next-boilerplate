@@ -1,8 +1,8 @@
 import { apiConfig } from "@/shared/api-config";
-import { createAsyncService } from "@ashrhmn/z-rest";
+import { createAsyncService } from "@deepchain-labs/z-rest-server";
 
 import { User } from "@/server/modules/user/entities/user.entity";
-import { createPaginationMetaFromFindManyOption } from "@ashrhmn/nest-modules";
+import { createPaginationMetaFromFindManyOption } from "@deepchain-labs/utils-server";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";

@@ -1,7 +1,11 @@
 import { UserService } from "@/server/modules/user/user.service";
 import { apiConfig } from "@/shared/api-config";
-import type { IContext } from "@ashrhmn/z-rest";
-import { Context, InferMethod, createAsyncController } from "@ashrhmn/z-rest";
+import {
+  Context,
+  InferMethod,
+  createAsyncController,
+  type IContext,
+} from "@deepchain-labs/z-rest-server";
 
 import { Controller } from "@nestjs/common";
 

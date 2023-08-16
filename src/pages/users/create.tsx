@@ -2,7 +2,7 @@ import { userService } from "@/client/service/user.service";
 import { handleError } from "@/client/utils/error.utils";
 import { promiseToast } from "@/client/utils/toast.utils";
 import { apiConfig } from "@/shared/api-config";
-import { defaultServiceArgs } from "@ashrhmn/z-rest-client";
+import { defaultServiceArgs } from "@deepchain-labs/z-rest-client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";

@@ -1,20 +1,28 @@
-import { AbcModule } from "@/server/modules/abc/abc.module";
-import { AuthModule } from "@/server/modules/auth/auth.module";
+import dotenv from "dotenv";
+dotenv.config();
+
 import { NextModule } from "@/server/modules/next/next.module";
-import { PostgresDatabaseProviderModule } from "@/server/providers/database/postgres/provider.module";
+// import { CacheModule } from "@deepchain-labs/nest-cache-module";
 import {
-  AlpacaModule,
   CacheModule,
   ERC20Module,
-  EtherscanModule,
   IERC20ModuleConfig,
   IEtherscanModuleConfig,
   ISwapModuleConfig,
   SwapModule,
-} from "@ashrhmn/nest-modules";
+} from "@deepchain-labs/nest-modules";
+
+// import {
+//   ERC20Module,
+//   IERC20ModuleConfig,
+// } from "@deepchain-labs/nest-erc20-module";
+
+// import { SwapModule } from "@deepchain-labs/nest-swap-module";
+
+import { AbcModule } from "@/server/modules/abc/abc.module";
 import { Module } from "@nestjs/common";
 
-export const networkConfig: IERC20ModuleConfig["networkConfig"] &
+const networkConfig: IERC20ModuleConfig["networkConfig"] &
   ISwapModuleConfig["networkConfig"] &
   IEtherscanModuleConfig["networkConfig"] = {
   5: {
@@ -47,31 +55,35 @@ export const networkConfig: IERC20ModuleConfig["networkConfig"] &
   },
 };
 
+// console.log({ networkConfig });
+
 @Module({
   imports: [
     ERC20Module.register({
       exposeController: true,
       networkConfig,
-      // REDIS_URL: "redis://localhost:6370",
+      // REDIS_URL: "redis://localhost:6379",
+      // global: true,
     }),
     SwapModule.register({
       exposeController: true,
       networkConfig,
       poolPositionFetchCacheTimeout: 10,
-      // REDIS_URL: "redis://localhost:6370",
+      // REDIS_URL: "redis://localhost:6379",
+      // global: true,
     }),
-    AlpacaModule.register({
-      exposeController: true,
-      apiKeys: {},
-    }),
-    EtherscanModule.register({
-      exposeController: false,
-      networkConfig,
-      // REDIS_URL: "redis://localhost:6370",
-    }),
+    // AlpacaModule.register({
+    //   exposeController: true,
+    //   apiKeys: {},
+    // }),
+    // EtherscanModule.register({
+    //   exposeController: false,
+    //   networkConfig,
+    //   // REDIS_URL: "redis://localhost:6370",
+    // }),
 
     CacheModule.register({
-      REDIS_URL: process.env.REDIS_URL,
+      REDIS_URL: "redis://localhost:6379",
       global: true,
     }),
     AbcModule,
@@ -79,8 +91,8 @@ export const networkConfig: IERC20ModuleConfig["networkConfig"] &
     //   rootPath: join(__dirname, "client"),
     // }),
     NextModule,
-    AuthModule,
-    PostgresDatabaseProviderModule,
+    // AuthModule,
+    // PostgresDatabaseProviderModule,
   ],
 })
 export class AppModule {}

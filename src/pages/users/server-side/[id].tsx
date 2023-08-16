@@ -1,7 +1,8 @@
 import { MyComp } from "@/client/components/MyComp";
 import { userService } from "@/client/service/user.service";
 import { apiConfig } from "@/shared/api-config";
-import { InferOutputs, defaultServiceArgs } from "@ashrhmn/z-rest-client";
+import { defaultServiceArgs } from "@deepchain-labs/z-rest-client";
+import { InferOutputs } from "@deepchain-labs/z-rest-common";
 import { GetServerSideProps } from "next";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
