@@ -1,5 +1,8 @@
 import { schema } from "@/shared/schema";
-import { IApiConfigSatisfier, defaultApiConfig } from "@ashrhmn/z-rest-client";
+import {
+  IApiConfigSatisfier,
+  defaultApiConfig,
+} from "@deepchain-labs/z-rest-common";
 import z from "zod";
 
 export const userApiConfig = {
@@ -39,5 +42,4 @@ export const userApiConfig = {
     responseSchema: z.string(),
     bodySchema: schema.user.createUser.body.partial(),
   },
-} as IApiConfigSatisfier;
-// } as const satisfies IApiConfigSatisfier;
+} as const satisfies IApiConfigSatisfier;

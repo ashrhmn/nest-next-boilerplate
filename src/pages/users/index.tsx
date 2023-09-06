@@ -6,8 +6,8 @@ import { promiseToast } from "@/client/utils/toast.utils";
 import {
   ConfirmationModal,
   useConfirmationModalData,
-} from "@ashrhmn/react-module";
-import { defaultServiceArgs } from "@ashrhmn/z-rest-client";
+} from "@deepchain-labs/ui-common";
+import { defaultServiceArgs } from "@deepchain-labs/z-rest-client";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 

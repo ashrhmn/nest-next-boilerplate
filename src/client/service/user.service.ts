@@ -1,5 +1,5 @@
 import { apiConfig } from "@/shared/api-config";
-import { MockData } from "@ashrhmn/z-rest-client";
+import { MockData } from "@deepchain-labs/z-rest-client";
 import service from ".";
 
 const _mockAllUsers: MockData<typeof apiConfig.user.getAll> = {

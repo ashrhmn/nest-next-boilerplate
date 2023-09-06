@@ -1,7 +1,13 @@
+import { MyComp } from "@/client/components/MyComp";
 import SwapPanelComponent from "@/client/components/SwapPanelComponent";
 
 const Swap = () => {
-  return <SwapPanelComponent />;
+  return (
+    <div>
+      <MyComp />
+      <SwapPanelComponent />
+    </div>
+  );
 };
 
 export default Swap;

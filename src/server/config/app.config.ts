@@ -1,7 +1,6 @@
-import z, { ZodError } from "zod";
-import { fromZodError } from "zod-validation-error";
+import z from "zod";
 
-import { tryCatch } from "@ashrhmn/nest-modules";
+import { parseEnv } from "@deepchain-labs/utils-server";
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -10,30 +9,7 @@ const envSchema = z.object({
   NODE_ENV: z.enum(["development", "production"]).default("development"),
 });
 
-const env = tryCatch(
-  () =>
-    envSchema.parse(
-      Object.entries(process.env).reduce(
-        (prev, [key, val]) => ({
-          ...prev,
-          [key]: (() => {
-            try {
-              if (val) return JSON.parse(val);
-              return val;
-            } catch (error) {
-              return val;
-            }
-          })(),
-        }),
-        {},
-      ),
-    ),
-  (error) => {
-    if (error instanceof ZodError)
-      throw new Error(`ENV ${fromZodError(error).message}`);
-    else throw new Error(`ENV ${error}`);
-  },
-);
+const env = parseEnv(envSchema);
 
 export const appConfig = {
   default_schema_identifier: "public",

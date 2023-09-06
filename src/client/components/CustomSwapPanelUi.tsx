@@ -1,4 +1,5 @@
-import { DefaultSwapPanelUI, clx } from "@ashrhmn/react-module";
+import { DefaultSwapPanelUI } from "@deepchain-labs/swap-ui";
+import { clx } from "@deepchain-labs/utils-client";
 import { LoaderIcon } from "react-hot-toast";
 
 export const CustomSwapPanelUI: typeof DefaultSwapPanelUI = ({

@@ -1,42 +1,20 @@
-import { CoingeckoService } from "@ashrhmn/nest-modules";
+import { AlpacaService } from "@deepchain-labs/nest-alpaca-module";
+import { CacheService } from "@deepchain-labs/nest-cache-module";
+import { CoingeckoService } from "@deepchain-labs/nest-coingecko-module";
+import { ERC20Service } from "@deepchain-labs/nest-erc20-module";
+import { EtherscanService } from "@deepchain-labs/nest-etherscan-module";
+import { SwapService } from "@deepchain-labs/nest-swap-module";
+
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class AbcService {
-  constructor(private readonly coingeckoService: CoingeckoService) {}
-
-  async convertPrice({
-    fromAmount,
-    fromCurrencySymbol,
-    toCurrencySymbol,
-  }: any) {
-    const {
-      [fromCurrencySymbol]: fromCurrencyPrice,
-      [toCurrencySymbol]: toCurrencyPrice,
-    } = await this.coingeckoService.getCoingeckoPrice([
-      fromCurrencySymbol,
-      toCurrencySymbol,
-    ]);
-
-    if (!fromCurrencyPrice?.usd)
-      return {
-        status: 400,
-        body: { message: `Invalid from currency symbol: ${toCurrencySymbol}` },
-      };
-
-    if (!toCurrencyPrice?.usd)
-      return {
-        status: 400,
-        body: { message: `Invalid to currency symbol: ${toCurrencySymbol}` },
-      };
-
-    return {
-      status: 200,
-      body: {
-        result: `${fromAmount} ${fromCurrencySymbol} = ${
-          (fromAmount * fromCurrencyPrice.usd) / toCurrencyPrice.usd
-        } ${toCurrencySymbol}`,
-      },
-    };
-  }
+  constructor(
+    private readonly cacheService: CacheService,
+    private readonly coingeckoService: CoingeckoService,
+    private readonly erc20Service: ERC20Service,
+    private readonly alpacaService: AlpacaService,
+    private readonly etherscanService: EtherscanService,
+    private readonly swapService: SwapService,
+  ) {}
 }
